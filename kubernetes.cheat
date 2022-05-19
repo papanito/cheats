@@ -1,0 +1,13 @@
+% kubernetes, k8s
+
+# kubectl: Get object names of a kubernetes context
+kubectl get <object=ns>  --no-headers -o custom-columns=':metadata.name' --context <context>
+
+# kubectl: Get pvc names for a given namespace
+kubectl get pvc -n <ns>  --context <context>  -o=jsonpath=\"{range .items[?(@.spec.storageClassName=='<storageclass>')]}{.metadata.name}{' '}{end}\"
+
+# kubectl: get label 'managed-by'"
+kubectl get <type=statefulset> -n <namespace> --context <context>  -o=jsonpath=\"{range .items[*]}{.spec.volumeclaimtemplates[?(@.kind=='PersistentVolumeClaim')]}{.metadata.name}{' --- '}{.spec.template.metadata.labels.app\\.kubernetes\\.io/managed-by}{'\\n'}{end}\"
+
+# kubectl: Remove claimRef from pv (patch)
+kubectl patch pv <pv_name> -n <namespace> --context <context> -p '{\"spec\":{\"claimRef\": null}}'
