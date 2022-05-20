@@ -11,3 +11,6 @@ kubectl get <type=statefulset> -n <namespace> --context <context>  -o=jsonpath=\
 
 # kubectl: Remove claimRef from pv (patch)
 kubectl patch pv <pv_name> -n <namespace> --context <context> -p '{\"spec\":{\"claimRef\": null}}'
+
+# kubectl: Copy truststore.jks from one secret to another
+kubectl --context=<source context> -n <source namespace> get secret <source secret name> -o json | jq -r '.data."truststore.jks"' | base64 -d -i > truststore.jks && kubectl --context=<target context> -n <target ns> create secret generic <target secret name > --from-file=truststore.jk
