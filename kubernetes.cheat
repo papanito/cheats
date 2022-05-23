@@ -7,18 +7,6 @@ $ context: kubectl config get-contexts --- --column 2 --header-lines 1
 $ namespace: kubectl get ns --context $context --- --column 1 --header-lines 1
 $ pod_name: kubectl get pod -n $namespace --context $context --- --column 1 --header-lines 1
 
-# kubectl: Get pvc names for a given namespace
-kubectl get pvc --context <context> -n <ns> -o=jsonpath=\"{range .items[?(@.spec.storageClassName=='<storageclass>')]}{.metadata.name}{' '}{end}\"
-
-$ context: kubectl config get-contexts --- --column 2 --header-lines 1
-
-# kubectl: get label 'managed-by'"
-kubectl get <type=statefulset> -n <namespace> --context <context>  -o=jsonpath=\"{range .items[*]}{.spec.volumeclaimtemplates[?(@.kind=='PersistentVolumeClaim')]}{.metadata.name}{' --- '}{.spec.template.metadata.labels.app\\.kubernetes\\.io/managed-by}{'\\n'}{end}\"
-
-# kubectl: Remove claimRef from pv (patch)
-kubectl patch pv <pv_name> --context <context> -p '{\"spec\":{\"claimRef\": null}}'
-
-$ pv_name: kubectl get pv --context $source_context --- --column 1 --header-lines 1
 
 # kubectl: Copy truststore.jks from one secret to another
 kubectl --context=<source_context> -n <source_namespace> get secret <source_secret_name> -o json | jq -r '.data."truststore.jks"' | base64 -d -i > truststore.jks && kubectl --context=<target_context> -n <target_namespace> create secret generic <target_secret_name > --from-file=truststore.jk
@@ -31,4 +19,24 @@ $ target_namespace: kubectl get ns --context $context --- --column 1 --header-li
 
 # kubectl: Check disk space on pod
 
-kubectl exec -it --context <context>  -n <namespace> <pod_name> -- sh -c "df -h"
+kubectl exec -it --context <context> -n <namespace> <pod_name> -- sh -c "df -h"
+
+% pvc
+@ kubernetes, k8s
+# kubectl: Get pvc names for a given namespace
+kubectl get pvc --context <context> -n <ns> -o=jsonpath=\"{range .items[?(@.spec.storageClassName=='<storageclass>')]}{.metadata.name}{' '}{end}\"
+
+$ context: kubectl config get-contexts --- --column 2 --header-lines 1
+
+# kubectl: get label 'managed-by'"
+kubectl get <type=statefulset> -n <namespace> --context <context>  -o=jsonpath=\"{range .items[*]}{.spec.volumeclaimtemplates[?(@.kind=='PersistentVolumeClaim')]}{.metadata.name}{' --- '}{.spec.template.metadata.labels.app\\.kubernetes\\.io/managed-by}{'\\n'}{end}\"
+
+# Increase disk space of an existing pvc
+kubectl patch --context <context> -n <namespace> pvc/<pvc_name> --patch '{"spec": {"resources": {"requests": {"storage": "<size_in_Gi>Gi"}}}}'
+
+$ pvc_name: kubectl get pvc -n $namespace --context $context --- --column 1 --header-lines 1
+
+# kubectl: Remove claimRef from pv (patch)
+kubectl patch pv <pv_name> --context <context> -p '{\"spec\":{\"claimRef\": null}}'
+
+$ pv_name: kubectl get pv --context $source_context --- --column 1 --header-lines 1
