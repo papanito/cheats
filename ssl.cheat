@@ -1,0 +1,4 @@
+% openssl
+
+# Show expiration date of SSL certificates
+echo | openssl s_client -connect <domain>:<port> 2>/dev/null |openssl x509 -dates -noout
