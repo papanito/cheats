@@ -7,6 +7,8 @@ $ pod_name: kubectl get pod -n $namespace --context $context --- --column 1 --he
 # kubectl: Get object names of a kubernetes context
 kubectl get <object> --no-headers -o custom-columns=':metadata.name' --context <context>
 
+$ object: echo -e "ns\ndeploy\nsts\npod\npvc\n "
+
 # kubectl: Copy truststore.jks from one secret to another
 kubectl --context=<source_context> -n <source_namespace> get secret <source_secret_name> -o json | jq -r '.data."truststore.jks"' | base64 -d -i > truststore.jks && kubectl --context=<target_context> -n <target_namespace> create secret generic <target_secret_name> --from-file=truststore.jk
 
