@@ -19,3 +19,12 @@ git branch -a --contains <commit_id>
 # Show the diff between the latest commit and the current state
 
 git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat
+
+# List config from ~/.gitconfig.user
+
+git config --file ~/.gitconfig.user -l
+
+# Configure user and mail in ~/.gitconfig.user
+
+git config --file ~/.gitconfig.user  user.name <username> /
+git config --file ~/.gitconfig.user  user.email <email>
