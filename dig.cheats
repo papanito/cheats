@@ -1,0 +1,210 @@
+% dns
+
+# Query Specific Name Server
+
+dig @<dns_Server_v4> <fqdn>
+
+$ dns_server_v4: echo -e "8.8.8.8\n "
+$ dns_server_v6: echo -e "2001:4860:4860::8888\n "
+
+# Search For Record Type
+
+dig @<dns_Server> <fqdn> <dns_record_type>
+
+$ dns_record_type: echo -e "ALL\nA\nMX\nTXT\n "
+
+# Reverse DNS Lookup
+
+dig -x <ip_address>
+
+# Trace DNS Path
+
+dig <fqdn> +trace
+
+# Adjust Answer Size of dig
+
+dig <fqdn> +short
+
+# Lookup From File
+
+dig -f <dns_query_file> +short
+
+# Specify Port Number
+
+dig @<dns_Server_v4> -p <port> <fqdn>
+
+# Use IPv4 Or IPv6
+
+dig -6 @<dns_Server_v6> <fqdn> <dns_record_type>
+
+# Query All DNS Record Types
+
+dig <fqdn> ANY
+
+# Customize Dig Output - Hide All
+
+dig <fqdn> +noall
+
+# Customize Dig Output - Print Statistics
+
+dig <fqdn> +noall +stats
+
+# Customize Dig Output - Print Answer
+
+dig <fqdn> +noall +answer
+
+# Adjust Defaults With ~/.digrc File
+
+cat ~/.digrc
+
+# TCP mode
+
+dig <fqdn> +[no]vc
+
+# TCP mode, alternate syntax
+
+dig <fqdn> +[no]tcp
+
+# Set query timeout [5]
+
+dig <fqdn> +time=<query_time>
+
+# Set number of UDP attempts [3]
+
+dig <fqdn> +tries=<query_tries>
+
+# Set number of UDP retries [2]
+
+dig <fqdn> +retry=<query_retries>
+
+# Set default domainname
+
+dig <fqdn> +domain=<domain_name>
+
+# Set EDNS0 Max UDP packet size
+
+dig <fqdn> +bufsize=<bufsize>
+
+# Set NDOTS value
+
+dig <fqdn> +ndots=<ndots>
+
+# Set EDNS version
+
+dig <fqdn> +edns=<edns_version>
+
+# Set whether to use searchlist
+
+dig <fqdn> +[no]search
+
+# Search with intermediate results
+
+dig <fqdn> +[no]showsearch
+
+# Ditto
+
+dig <fqdn> +[no]defname
+
+# Recursive mode
+
+dig <fqdn> +[no]recurse
+
+# Don’t revert to TCP for TC responses.
+
+dig <fqdn> +[no]ignore
+
+# Don’t try next server on SERVFAIL
+
+dig <fqdn> +[no]fail
+
+# Try to parse even illegal messages
+
+dig <fqdn> +[no]besteffort
+
+# Set AA flag in query dig <fqdn> +[no]aaflag
+
+dig <fqdn> +[no]aaonly
+
+# Set AD flag in query
+
+dig <fqdn> +[no]adflag
+
+# Set CD flag in query
+
+dig <fqdn> +[no]cdflag
+
+# Control display of class in records
+
+dig <fqdn> +[no]cl
+
+# Control display of command line
+
+dig <fqdn> +[no]cmd
+
+# Control display of comment lines
+
+dig <fqdn> +[no]comments
+
+# Control display of question
+
+dig <fqdn> +[no]question
+
+# Control display of answer
+
+dig <fqdn> +[no]answer
+
+# Control display of authority
+
+dig <fqdn> +[no]authority
+
+# Control display of additional
+
+dig <fqdn> +[no]additional
+
+# Control display of statistics
+
+dig <fqdn> +[no]stats
+
+# Disable everything except shortform of answer
+
+dig <fqdn> +[no]short
+
+# Control display of ttls in records
+
+dig <fqdn> +[no]ttlid
+
+# Set or clear all display flags
+
+dig <fqdn> +[no]all
+
+# Print question before sending
+
+dig <fqdn> +[no]qr
+
+# Search all authoritative nameservers
+
+dig <fqdn> +[no]nssearch
+
+# ID responders in short answers
+
+dig <fqdn> +[no]identify
+
+# Trace delegation down from root
+
+dig <fqdn> +[no]trace
+
+# Request DNSSEC records
+
+dig <fqdn> +[no]dnssec
+
+# Request Name Server ID
+
+dig <fqdn> +[no]nsid
+
+# Print records in an expanded format
+
+dig <fqdn> +[no]multiline
+
+# AXFR prints only one soa record
+
+dig <fqdn> +[no]onesoa
