@@ -53,6 +53,10 @@ dig <fqdn> +noall +stats
 
 dig <fqdn> +noall +answer
 
+# Get a list of all subdomains of a domain
+
+dig @<dns_Server_v4 <fqdn> axfr
+
 # Adjust Defaults With ~/.digrc File
 
 cat ~/.digrc
