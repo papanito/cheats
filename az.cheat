@@ -2,4 +2,4 @@
 
 # Get all Azure subscription names and ids
 
-az account list -otable --query '[].{Name: name,subscription_id: id}'"
+az account list -otable --query '[].{Name: name,subscription_id: id}'
