@@ -1,4 +1,5 @@
-% kubernetes
+% kubernetes, k8s
+$ context: kubectl config get-contexts --- --column 2 --header-lines 1
 $ namespace: kubectl get ns --- --column 1 --header-lines 1
 $ pod_name: kubectl get pod -n $namespace  --- --column 1 --header-lines 1
 $ object: echo -e "ns\ndeployments\nstatefulsets\npod\npvc\n "
@@ -15,19 +16,18 @@ kubectl exec -it -n <namespace> <pod_name> -- sh -c "df -h"
 # Get resource limits for all objects in current context
 kubectl get <object> -o name -o=jsonpath='{range .items[*]}{.metadata.namespace}{"\t"}{.metadata.name}{"\t"}{..resources.requests}{"\t"}{..resources.limits}{"\n"}{end}' -A | awk '{printf "%-44s\t%-45s\t%-40s\t%s\n", $1,$2,$3,$4 }'
 
-% kubernetes, pvc
-@ kubernetes
+% kubernetes, k8s, pvc
+@ kubernetes, k8s
 # Increase disk space of an existing pvc in current context
 kubectl patch -n <namespace> pvc/<pvc_name> --patch '{"spec": {"resources": {"requests": {"storage": "<size_in_Gi>Gi"}}}}'
 
-% kubernetes, context
-@ kubernetes
+% kubernetes, k8s, context
+@ kubernetes, k8s
 
-$ context: kubectl config get-contexts --- --column 2 --header-lines 1
 $ namespace: kubectl get ns --context $context --- --column 1 --header-lines 1
 $ pod_name: kubectl get pod -n $namespace --context $context --- --column 1 --header-lines 1
 
-# Get object names of a kubernetes context
+# Get object names of a kubernetes, k8s context
 kubectl get <object> --no-headers -o custom-columns=':metadata.name' --context <context>
 
 # Copy truststore.jks from one secret to another
@@ -48,8 +48,8 @@ kubectl exec -it --context <context> -n <namespace> <pod_name> -- /bin/bash
 # Check disk space on pod in a specific context
 kubectl exec -it --context <context> -n <namespace> <pod_name> -- sh -c "df -h"
 
-% kubernetes, context, pvc
-@ kubernetes, context
+% kubernetes, k8s, context, pvc
+@ kubernetes, k8s, context
 # Get pvc names for a given namespace in a specific context
 kubectl get pvc --context <context> -n <ns> -o=jsonpath=\"{range .items[?(@.spec.storageClassName=='<storageclass>')]}{.metadata.name}{' '}{end}\"
 
@@ -57,7 +57,7 @@ kubectl get pvc --context <context> -n <ns> -o=jsonpath=\"{range .items[?(@.spec
 kubectl get pvc -n <ns> -o=jsonpath=\"{range .items[?(@.spec.storageClassName=='<storageclass>')]}{.metadata.name}{' '}{end}\"
 
 # get label 'managed-by'"
-kubectl get <type> --context <context> -n <namespace> -o=jsonpath=\"{range .items[*]}{.spec.volumeclaimtemplates[?(@.kind=='PersistentVolumeClaim')]}{.metadata.name}{' --- '}{.spec.template.metadata.labels.app\\.kubernetes\\.io/managed-by}{'\\n'}{end}\"
+kubectl get <type> --context <context> -n <namespace> -o=jsonpath=\"{range .items[*]}{.spec.volumeclaimtemplates[?(@.kind=='PersistentVolumeClaim')]}{.metadata.name}{' --- '}{.spec.template.metadata.labels.app\\.kubernetes, k8s\\.io/managed-by}{'\\n'}{end}\"
 
 # Increase disk space of an existing pvc in a given context
 kubectl patch --context <context> -n <namespace> pvc/<pvc_name> --patch '{"spec": {"resources": {"requests": {"storage": "<size_in_Gi>Gi"}}}}'
