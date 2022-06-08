@@ -1,5 +1,5 @@
 % helm
-@ kubernetes, k8s
+@ kubernetes
 
 $ helm_release_name: helm ls --kube-context $context -n $namespace --- --column 1 --header-lines 1 --delimiter '\s\s+'
 
@@ -8,7 +8,7 @@ $ helm_release_name: helm ls --kube-context $context -n $namespace --- --column 
 helm --kube-context <context> -n <namespace> get values <helm_release_name>
 
 % helm, rancher
-@ kubernetes, k8s
+@ kubernetes
 
 # Get helm values of rancher helm chart
 
