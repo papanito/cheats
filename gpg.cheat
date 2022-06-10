@@ -1,0 +1,8 @@
+% gpg
+$ key_name: gpg --list-keys --with-colons | awk -F: '$1 == "uid" {print $8}' --- --column 1
+
+# Export Public Key as armored ASCII
+gpg --output <output_filename> --armor --export <key_name>
+
+# List pgp keys
+gpg --list-keys --with-colons | awk -F: '$1 == "uid" {print $8 "\t" $10 }'
