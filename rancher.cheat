@@ -9,4 +9,14 @@ $ local_context: echo -e "nop-local\nprd-local"
 # Get Fleet bundles, filtered by pattern
 kubectl get bundle -n fleet-default --context <local_context> | grep -E "<pattern>"
 
-$ pattern: echo -e "metallb|ingress"
+# Get Rancher clusters
+kubectl get clusters.management.cattle.io
+
+# Get Rancher nodes
+kubectl get nodes.management.cattle.io -A
+
+# Remove cluster manually from Rancher
+kubectl patch clusters.management.cattle.io <clusterid> -p '{"metadata":{"finalizers":[]}}' --type=merge && 
+kubectl delete clusters.management.cattle.io <clusterid>
+
+$ clusterid: kubectl -n fleet-default get clusters.provisioning.cattle.io   --- --column 1 --header-lines 1
