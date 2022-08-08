@@ -1,0 +1,13 @@
+% pacman, arch
+
+# Import key
+pacman-key --recv-keys <keyid>
+
+# Add key from file
+pacman-key --add <keyfile>
+
+# Verify fingerprint of key
+pacman-key --finger <keyid>
+
+# Sync keys to pacman
+pacman-key --refresh-keys
