@@ -1,0 +1,29 @@
+% chezmoi
+
+# Add file to be managed by chezmoi
+
+chezmoi add <file>
+
+# Check what changes that chezmoi will make to your home directory
+
+chezmoi diff
+
+# Apply changes to your home directory  
+
+chezmoi apply -v
+
+# Edit file
+
+chezmoi edit <file>
+
+# invoke a merge tool (by default vimdiff) to merge changes between the current contents of the file, the file in your working copy, and the computed contents of the file:
+
+chezmoi merge <file>
+
+# On any machine, you can pull and apply the latest changes from your repo
+
+chezmoi update -v
+
+# Install your dotfiles on new machine with a single command
+
+chezmoi init --apply https://github.com/<username>/<reponame>.git
