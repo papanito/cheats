@@ -27,3 +27,21 @@ chezmoi update -v
 # Install your dotfiles on new machine with a single command
 
 chezmoi init --apply https://github.com/<username>/<reponame>.git
+
+# Encrypt file
+chezmoi add --encrypt <file>
+
+# To force a refresh the downloaded archives
+chezmoi --refresh-externals apply
+
+# Add attribute to file
+
+$addattr: echo -e "+after\n+before\n+empty\n+encrypted\n+exact\n+executable\n+modify\n+once\n+onchange"
+
+chezmoi chattr <addattr> <file>
+
+# Remove attribute to file
+
+$delattr: echo -e "-after\n-before\n-empty\n-encrypted\n-exact\n-executable\n-modify\n-once\n-onchange"
+
+chezmoi chattr -- <delattr> <file>
