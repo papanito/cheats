@@ -6,3 +6,12 @@ gpg --output <output_filename> --armor --export <key_name>
 
 # List pgp keys
 gpg --list-keys --with-colons | awk -F: '$1 == "uid" {print $8 "\t" $10 }'
+
+# To locate the key of a user, by email address:
+gpg --auto-key-locate keyserver --locate-keys <email>
+
+# Refresh all your keys (e.g. new revocation certificates and subkeys)
+gpg --refresh-keys
+
+# Upload and verify key to keys.openpgp.org
+gpg --export <email> | curl -T - https://keys.openpgp.org 
