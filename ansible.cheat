@@ -1,0 +1,4 @@
+% ansible
+
+# Show decrypted string which was encrypted with vault
+ansible <target> -m debug -a 'var=<variable>'
