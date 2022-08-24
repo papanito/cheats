@@ -1,3 +1,7 @@
-% gnome: set default terminal application
+% gnome
 
+# set default terminal application
 gsettings set org.gnome.desktop.default-applications.terminal exec <console>
+
+# dump dconf to file
+dconf dump <path> > dump.dconf
