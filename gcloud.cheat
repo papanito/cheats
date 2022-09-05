@@ -1,0 +1,14 @@
+% gcloud
+
+# Login to Google cloud
+gcloud auth login
+
+
+# Select authenticated account to use
+gcloud config set account <account>
+
+# Select active google project
+gcloud config set project <PROJECT_ID>
+
+# List gcloud projects
+gcloud projects list
