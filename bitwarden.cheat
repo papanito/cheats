@@ -1,0 +1,12 @@
+% bitwarden, bw
+$ pwd_options: echo -e "lusn\n "
+$ folder:  bw list folders | jq -r '.[] | .name + " " + .id ' | awk '{printf "%-44s\t%-45s\n", $1,$2}' --- --column 2 --header-lines 1
+
+# Create new login in Bitwarden
+bw get template item | jq ".name=\"<item_name>\" | .login=$(bw get template item.login | jq '.username="<username>" | .password="<password>" | .folderId="<folder>"')" | bw encode | bw create item && bw sync
+
+# Create random password with Bitwarden
+bw generate -<pwd_options> --length <length>
+
+# Create secure note in Bitwarden
+bw get template item | jq '.type = 2 | .secureNote.type = 0 | .notes = "<contents>" | .name = "<name>"' | bw encode | bw create item
