@@ -1,0 +1,7 @@
+% windows,powershell
+
+# to list all the features available with a given string
+Get-WindowsFeature | Where-Object Name -like '*<search_string>*' | Select-Object 
+
+# remove feature from windows
+Remove-WindowsFeature <feature_name>
