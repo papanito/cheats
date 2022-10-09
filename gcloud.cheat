@@ -1,5 +1,6 @@
 % gcloud
 $ project: gcloud projects list --- --column 1 --header-lines 1
+$ secret: gcloud secrets list --- --column 1 --header-lines 1
 
 # Login to Google cloud
 gcloud auth login
@@ -13,8 +14,20 @@ gcloud config set project <project>
 # List gcloud projects
 gcloud projects list
 
+# Create a new secret
+gcloud secrets add <secret_name>
+
+# Delete secret
+gcloud secrets delete <secret>
+
 # Create a new secret version from file
-gcloud secrets versions add <secret_name> --data-file="<data_file>"
+gcloud secrets versions add <secret> --data-file="<data_file>"
 
 # Create a new secret version from stdin (not recommended)
-echo -n "<secret_date>" | gcloud secrets versions add <secret_name> --data-file=-
+ echo -n "<secret_date>" | gcloud secrets versions add <secret> --data-file=-
+
+# Grant access to gcloud secret
+gcloud secrets add-iam-policy-binding <secret> --member="<iam_member>" --role="roles/secretmanager.secretAccessor"
+
+# Add labels to gcloud secret
+gcloud secrets update <secret> --update-labels=<key>=<value>
