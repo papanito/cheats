@@ -48,6 +48,12 @@ kubectl exec -it --context <context> -n <namespace> <name> -- /bin/bash
 # Check disk space on pod in a specific context
 kubectl exec -it --context <context> -n <namespace> <name> -- sh -c "df -h"
 
+# Set default namespace of current context
+kubectl config set-context --current --namespace=<namespace>
+
+# Get info about current context
+kubectl config get-contexts $(kubectl config current-context)
+
 % kubernetes, k8s, context, pvc
 @ kubernetes, k8s, context
 # Get pvc names for a given namespace in a specific context
