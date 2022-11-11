@@ -1,0 +1,23 @@
+% restic
+$ repository: echo "$RESTIC_REPOSITORY\n"
+
+# Restoring snapshot to a specific directory
+restic -r <repository> restore <snapshot_id> --target <restore_dir>
+
+# Restoring snapshot from a specific host to a specific directory
+restic -r <repository> restore <snapshot_id> --target <restore_dir> --host <host>
+
+# Restoring a folder/file form a snapshot to a specific directory
+restic -r <repository> restore <snapshot_id> --target <restore_dir> --include <include>
+
+# Restoring a snapshot except a given folder/file to a specific directory
+restic -r <repository> restore <snapshot_id> --target <restore_dir> --exclude <exclude>
+
+# Compare two snapshots
+restic -r <repository> diff <snapshot_id1> <snapshot_id2>
+
+# Backup a folder with restic
+restic -r <repository> --verbose backup <source>
+
+# Backup a folder with restic excluding files with a file
+restic -r <repository> --verbose backup <source> --exclude-file=<exclude_file>

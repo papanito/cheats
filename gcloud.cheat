@@ -31,3 +31,6 @@ gcloud secrets add-iam-policy-binding <secret> --member="<iam_member>" --role="r
 
 # Add labels to gcloud secret
 gcloud secrets update <secret> --update-labels=<key>=<value>
+
+# List IAM roles (names and description)
+gcloud iam roles list --format json | jq ' .[] | ( .name + "\t" + .description) '
