@@ -1,0 +1,42 @@
+% salt
+
+# Update the fileserver cache. If no backend is provided, then the cache for all configured backends will be updated.
+salt-run fileserver.update
+#Update the fileserver cache, narrow fileserver backends to a subset of the enabled ones
+salt-run fileserver.update backend=<backend_comma_separated>
+
+# Forcibly removes all caches on a minion.
+salt '*' saltutil.clear_cache
+
+# Passing pillar data ad hoc
+salt '*' state.apply ftpsync pillar='{<comma_separated_key_value_pairs>}'
+
+# List all files from the salt fileserver
+salt-run fileserver.file_list 
+
+# Lists only files for fileserver environment <saltenv>
+salt-run fileserver.file_list saltenv=<saltenv>
+
+# List only files from fileserver backends to <backend> only
+salt-run fileserver.file_list saltenv=<saltenv> backend=<backend>
+
+# apply all configured states
+salt '*' state.apply
+
+# Custom Pillar values, passed as a dictionary of key-value pairs
+salt '*' state.apply test pillar='{<pillar_key_value_pair>}'
+
+# Exclude specific states from execution e.g "[{'id': 'id_to_exclude'}, {'sls': 'sls_to_exclude'}]"
+salt '*' state.apply exclude="<exclude>"
+
+# Refresh Salt pillar data on all minions
+salt '*' saltutil.refresh_pillar
+
+# List grains
+salt '*' grains.ls
+
+# List grains data
+salt '*' grains.items
+
+List values for a specific grain for all minions
+salt '*' grains.get os
