@@ -1,20 +1,23 @@
 % kubernetes, k8s
 $ context: kubectl config get-contexts --- --column 2 --header-lines 1
 $ namespace: kubectl get ns --- --column 1 --header-lines 1
-$ name: kubectl get pod -n $namespace  --- --column 1 --header-lines 1
+$ pod: kubectl get pod -n $namespace  --- --column 1 --header-lines 1
 $ object: echo -e "ns\ndeployments\nstatefulsets\npod\npvc\n "
 
 # Print logs of a pod in current context
-kubectl logs -n <namespace> -f pods/<name>
+kubectl logs -n <namespace> -f pods/<pod>
 
 # Open shell to a pod in current context
-kubectl exec -it -n <namespace> <name> -- /bin/bash
+kubectl exec -it -n <namespace> <pod> -- /bin/bash
 
 # Check disk space on pod in current context
-kubectl exec -it -n <namespace> <name> -- sh -c "df -h"
+kubectl exec -it -n <namespace> <pod> -- sh -c "df -h"
 
 # Get resource limits for all objects in current context
 kubectl get <object> -o name -o=jsonpath='{range .items[*]}{.metadata.namespace}{"\t"}{.metadata.name}{"\t"}{..resources.requests}{"\t"}{..resources.limits}{"\n"}{end}' -A | awk '{printf "%-44s\t%-45s\t%-40s\t%s\n", $1,$2,$3,$4 }'
+
+# Get events for specific pod
+kubectl get event --field-selector involvedObject.name="<pod>" -n <namespace>
 
 % kubernetes, k8s, pvc
 @ kubernetes, k8s
@@ -40,13 +43,13 @@ $ source_secret_name: kubectl get secret --context $context -n $namespace --- --
 $ target_namespace: kubectl get ns --context $context --- --column 1 --header-lines 1
 
 # Print logs of a pod in a specific context
-kubectl logs --context <context> -n <namespace> -f pods/<name>
+kubectl logs --context <context> -n <namespace> -f pods/<pod>
 
 # Open shell to a pod in a specific context
-kubectl exec -it --context <context> -n <namespace> <name> -- /bin/bash
+kubectl exec -it --context <context> -n <namespace> <pod> -- /bin/bash
 
 # Check disk space on pod in a specific context
-kubectl exec -it --context <context> -n <namespace> <name> -- sh -c "df -h"
+kubectl exec -it --context <context> -n <namespace> <pod> -- sh -c "df -h"
 
 # Set default namespace of current context
 kubectl config set-context --current --namespace=<namespace>
