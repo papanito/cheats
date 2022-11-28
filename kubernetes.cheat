@@ -19,6 +19,12 @@ kubectl get <object> -o name -o=jsonpath='{range .items[*]}{.metadata.namespace}
 # Get events for specific pod
 kubectl get event --field-selector involvedObject.name="<pod>" -n <namespace>
 
+# Get failing pods of all ns
+kubectl get pods --field-selector="status.phase!=Succeeded,status.phase!=Running" -A
+
+# Get failing pods of a specifc ns
+kubectl get pods --field-selector="status.phase!=Succeeded,status.phase!=Running" -n <namespace>
+
 % kubernetes, k8s, pvc
 @ kubernetes, k8s
 # Increase disk space of an existing pvc in current context
