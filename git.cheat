@@ -1,31 +1,24 @@
 % git
 
 # Get branch name of current branch
-
 git symbolic-ref --short HEAD
 
 # Remove branches that have already been merged with main a.k.a. ‘delete merged'
-
 git branch --merged | grep -v '\*\|master\|main\|dev' | xargs -n 1 git branch -d
 
 # Find tags containing commit
-
 git describe --always --contains <commit_id>
 
 # Find branches containing commit
-
 git branch -a --contains <commit_id>
 
 # Show the diff between the latest commit and the current state
-
 git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat
 
 # List config from ~/.gitconfig.user
-
 git config --file ~/.gitconfig.user -l
 
 # Configure user and mail in ~/.gitconfig.user
-
 git config --file ~/.gitconfig.user  user.name <author_name> /
 git config --file ~/.gitconfig.user  user.email <email>
 
