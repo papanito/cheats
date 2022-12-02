@@ -2,7 +2,7 @@
 $ context: kubectl config get-contexts --- --column 2 --header-lines 1
 $ namespace: kubectl get ns --- --column 1 --header-lines 1
 $ pod: kubectl get pod -n $namespace  --- --column 1 --header-lines 1
-$ object: echo -e "ns\ndeployments\nstatefulsets\npod\npvc\n "
+$ object: kubectl api-resources --- --column 1 --header-lines 1
 
 # Get all Kubernetes objects
 kubectl api-resources
