@@ -4,8 +4,6 @@
 # Get Fleet bundles 
 kubectl get bundle -n fleet-default --context <local_context>
 
-$ local_context: echo -e "nop-local\nprd-local"
-
 # Get Fleet bundles, filtered by pattern
 kubectl get bundle -n fleet-default --context <local_context> | grep -E "<pattern>"
 
