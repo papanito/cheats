@@ -1,0 +1,7 @@
+% find
+
+# Find directories in location <dir>
+find <dir> -maxdepth 1 -type d
+
+# Find directories in location <dir> ignoring hidden directories
+find . -maxdepth 1 -type d -not -path '*/.*' -not -path '.'
