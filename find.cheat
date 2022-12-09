@@ -5,3 +5,9 @@ find <dir> -maxdepth 1 -type d
 
 # Find directories in location <dir> ignoring hidden directories
 find . -maxdepth 1 -type d -not -path '*/.*' -not -path '.'
+
+# Prints all files that are descendants of your directory, skipping hidden files and directories
+find . -not -path '*/.*'  -not -path '.'
+
+# Find files with some text in its name, but skip hidden files and directories
+find . -not -path '*/.*' -type f -name '*<search text>*'
