@@ -1,0 +1,19 @@
+%wc
+
+# Count number of lines, number of words and number of bytes in a file
+wc <filename>
+
+# Count number of lines in a file
+wc -l <filename>
+
+# Count number of words in a file
+wc -w <filename>
+
+# Count number of characters in a file
+wc -m <filename>
+
+# Count number of bytes in a file
+wc -c <filename>
+
+# Display Length of Longest Line in File
+wc -L :x<filename>
