@@ -1,4 +1,4 @@
-%wc
+% wc
 
 # Count number of lines, number of words and number of bytes in a file
 wc <filename>
@@ -16,4 +16,4 @@ wc -m <filename>
 wc -c <filename>
 
 # Display Length of Longest Line in File
-wc -L :x<filename>
+wc -L <filename>
