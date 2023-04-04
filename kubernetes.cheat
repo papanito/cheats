@@ -34,6 +34,9 @@ kubectl get <object> --selector <label>
 # Get pods with a specific value of a given label
 kubectl get <object> --selector <label>=<label_value>
 
+# Passing long configuration file to Kubernetes in case you get "is invalid: metadata.annotations: Too long: must have at most 262144 characters"
+kubectl apply --server-side=true -f <file>
+
 % kubernetes, k8s, pvc
 @ kubernetes, k8s
 # Increase disk space of an existing pvc in current context
