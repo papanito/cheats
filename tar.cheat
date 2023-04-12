@@ -1,0 +1,59 @@
+% tar
+
+# Create a tar file for a directory <directory> in current directory
+tar -cvf <archive_file>.tar <directory>
+
+# Create a tar.gz file for a directory <directory> in current directory
+$ ext: echo "tar.gz tgz"
+tar -cvzf <archive_file>.<ext> <directory>
+
+# Create a tar.bz2 file for a directory <directory> in current directory
+$ ext: echo "tar.bz2 tbz tb2"
+tar -cvfj <archive_file>.<ext> <directory>
+
+# Untar files in current directory
+tar -xvf <archive_file>
+
+# Untar files in specified directory
+tar -xvf <archive_file>.tar -C <target_dir>
+
+# List files in tar/tgz/tbz archive
+tar -tvf <archive_file>
+
+# Extract specific file from tar archive
+tar -xvf <archive_file>.tar <file_to_extract>
+
+# Extract specific file from tgz archive
+$ ext: echo "tar.gz tgz"
+tar -zxvf <archive_file>.<ext> <file_to_extract>
+
+# Extract specific file from tbz archive
+$ ext: echo "tar.bz2 tbz tb2"
+tar -jxvf <archive_file>.<ext> <file_to_extract>
+
+# Extract specific file from tar archive using wildcards
+tar -xvf <archive_file>.tar --wildcards '<wildcard_expression>'
+
+# Extract specific file from tgz archive using wildcards
+$ ext: echo "tar.gz tgz"
+tar -zxvf <archive_file>.<ext> --wildcards '<wildcard_expression>'
+
+# Extract specific file from tbz archive using wildcards
+$ ext: echo "tar.bz2 tbz tb2"
+tar -jxvf <archive_file>.<ext> --wildcards '<wildcard_expression>'
+
+# Add files or directory to tar archive
+$ ext: echo "tar tar.gz tgz tar.bz2 tbz tb2"
+tar -rvf <archive_file>.tar <files_to_add>
+
+# Verify tar, tar.gz, and tar.bz2 archive file
+$ ext: echo "tar tar.gz tgz tar.bz2 tbz tb2"
+tar tvfW <archive_file>.<ext>
+
+# Check tar file size
+$ ext: echo "tar tar.gz tgz tar.bz2 tbz tb2"
+tar -czf <archive_file>.<ext> | wc -c
+
+# Remove file and directory from tar file
+$ ext: echo "tar tar.gz tgz tar.bz2 tbz tb2"
+tar --delete -f <archive_file>.<ext> <files_to_exclude>
