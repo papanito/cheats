@@ -1,0 +1,29 @@
+% scp
+
+# Copy a file from local to a remote host
+scp <source_file_name> <username>@<host>:<folder>
+
+# Copy a file from remote to local host
+scp <username>@<host>:<file> <target_folder>
+
+# Copy a file from local to a remote host while compressing
+scp -Cpv <source_file_name> <username>@<host>:<folder>
+
+# Copy a file from remote to local host while compressing
+scp -Cpv <username>@<host>:<file> <target_folder>
+
+# Change SCP Cipher to encrypt files
+$ cipher = echo "3des"
+scp -c <cipher> <source_file_name> <username>@<host>:<folder>
+
+# Limiting bandwidth usage
+scp -l <kbps> <source_file_name> <username>@<host>:<folder>
+
+# Use a different port for scp
+scp -P <port> <source_file_name> <username>@<host>:<folder>
+
+# Copy files and directories recursively
+scp -r <source_folder> <username>@<host>:<folder>
+
+# Disable progress messages
+scp -q <source_file_name> <username>@<host>:<folder>
