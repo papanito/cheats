@@ -1,0 +1,17 @@
+% gitlab, glab, gitlab-cli
+
+
+% gitlab, glab, gitlab-cli, repos
+
+# create a repository under your account using the current directory name
+glab repo create
+  
+# create a repository under a group using the current directory name
+glab repo create --group <group>
+
+# create a repository with a specific name
+glab repo create <repo>
+  
+# create a repository for a group
+glab repo create <group>/<repo>
+
