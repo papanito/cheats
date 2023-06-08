@@ -1,0 +1,46 @@
+% github, github-cli, gh
+
+# Login with gh
+gh auth login
+
+% github, github-cli, gh, api
+
+# Get starred repos by authenticated user (table with only name and description)
+gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  -H "per_page: 100" \
+  /user/starred --jq ".[] | [.name, .description] | @tsv"
+
+# print only specific fields from the response
+gh api repos/<owner>/<repo>/issues --jq '.[].title'
+
+# use a template for the output
+gh api repos/<owner>/<repo>/issues --template \
+  '{{range .}}{{.title}} ({{.labels | pluck "name" | join ", " | color "yellow"}}){{"\n"}}{{end}}'
+
+# list releases with GraphQL
+gh api graphql -F owner='{owner}' -F name='{repo}' -f query='
+  query($name: String!, $owner: String!) {
+    repository(owner: $owner, name: $name) {
+      releases(last: 3) {
+        nodes { tagName }
+      }
+    }
+  }
+'
+
+# list all repositories for a user
+gh api graphql --paginate -f query='
+  query($endCursor: String) {
+    viewer {
+      repositories(first: 100, after: $endCursor) {
+        nodes { nameWithOwner }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  }
+'
