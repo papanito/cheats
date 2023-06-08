@@ -1,4 +1,6 @@
 % azure
+$ subscriptions: az account list -otable --query '[].{Name: name,id: id}' --- --column 2 --header-lines 1
+
 # Get current subsription ID
 az account show --query id --output tsv
 

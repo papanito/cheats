@@ -1,7 +1,6 @@
 % azure, service-principals
 @ azure, service-principals
-$ sp-id: az ad sp list -otable --query '[].{Name: displayName,subscription_id: id}' --- --column 2 --header-lines 1
-
+$ sp-id: az ad sp list -otable --query '[].{Name: displayName,subscription_id: id}'
 # List all service principals with displayName and ID
 az ad sp list -otable --query '[].{Name: displayName,id: id}'
 
@@ -13,6 +12,9 @@ az ad sp create-for-rbac -n <display name>
 
 # Create with a Contributor role assignments on specified scopes (space separated)
 az ad sp create-for-rbac -n <display name> --role Contributor --scopes <scopes>
+
+# Create with a Contributor role assignments on subscription level
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<subscriptions>" --display-name <display name>
 
 # Create using a self-signed certificate
 az ad sp create-for-rbac --create-cert
