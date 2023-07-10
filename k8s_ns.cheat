@@ -1,0 +1,14 @@
+% kubernetes, k8s, ns
+@ kubernetes, k8s
+# get all ns
+kubectl get ns
+
+% kubernetes, k8s, ns, rancher
+@ kubernetes, k8s, ns
+# Get all namespaces belonging to a specific rancher project(id) in the form of c-xxxxx:p-xxxxx
+kubectl get ns -o=jsonpath="{range .items[?(@.metadata.annotations.field\.cattle\.io/projectId!='<projectId>')]}{.metadata.name}{'\n'}{end}"
+
+
+% kubernetes, k8s, ns, context
+@ kubernetes, k8s, ns
+kubectl get ns --context $context

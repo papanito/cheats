@@ -1,0 +1,43 @@
+% kubernetes, k8s
+
+# Print logs of a pod in current context
+kubectl logs -n <namespace> -f pods/<pod>
+
+# Open shell to a pod in current context
+kubectl exec -it -n <namespace> <pod> -- /bin/bash
+
+# Check disk space on pod in current context
+kubectl exec -it -n <namespace> <pod> -- sh -c "df -h"
+
+# Get resource limits for all objects in current context
+kubectl get <object> -o name -o=jsonpath='{range .items[*]}{.metadata.namespace}{"\t"}{.metadata.name}{"\t"}{..resources.requests}{"\t"}{..resources.limits}{"\n"}{end}' -A | awk '{printf "%-44s\t%-45s\t%-40s\t%s\n", $1,$2,$3,$4 }'
+
+# Get events for specific pod
+kubectl get event --field-selector involvedObject.name="<pod>" -n <namespace>
+
+# Get failing pods of all ns
+kubectl get pods --field-selector="status.phase!=Succeeded,status.phase!=Running" -A
+
+# Get failing pods of a specifc ns
+kubectl get pods --field-selector="status.phase!=Succeeded,status.phase!=Running" -n <namespace>
+
+# Get object with a specific label
+kubectl get <object> --selector <label>
+
+# Get pods with a specific value of a given label
+kubectl get <object> --selector <label>=<label_value>
+
+## Get object with a specific annotation e.g `@.spec.template.metadata.annotations.prometheus\.io/scrape=="true"`
+kubectl get <object> -o=jsonpath='{.items[?(<annotation>)].metadata.name}'
+
+% kubernetes, k8s, context
+@ kubernetes, k8s
+
+# Print logs of a pod in a specific context
+kubectl logs --context <context> -n <namespace> -f pods/<pod>
+
+# Open shell to a pod in a specific context
+kubectl exec -it --context <context> -n <namespace> <pod> -- /bin/bash
+
+# Check disk space on pod in a specific context
+kubectl exec -it --context <context> -n <namespace> <pod> -- sh -c "df -h"

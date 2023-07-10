@@ -1,0 +1,33 @@
+% kubernetes, k8s
+$ context: kubectl config get-contexts --- --column 2 --header-lines 1
+$ namespace: kubectl get ns --- --column 1 --header-lines 1
+$ pod: kubectl get pod -n $namespace  --- --column 1 --header-lines 1
+$ object: kubectl api-resources --- --column 1 --header-lines 1
+
+# Get all Kubernetes objects
+kubectl api-resources
+
+# Set default namespace of current context
+kubectl config set-context --current --namespace=<namespace>
+
+# Passing long configuration file to Kubernetes in case you get "is invalid: metadata.annotations: Too long: must have at most 262144 characters"
+kubectl apply --server-side=true -f <file>
+
+% kubernetes, k8s, context
+@ kubernetes, k8s
+$ namespace: kubectl get ns --context $context --- --column 1 --header-lines 1
+$ name: kubectl get pod -n $namespace --context $context --- --column 1 --header-lines 1
+$ source_context: kubectl config get-contexts --- --column 2 --header-lines 1
+$ target_context: kubectl config get-contexts --- --column 2 --header-lines 1
+$ source_namespace: kubectl get ns --context $source_context --- --column 1 --header-lines 1
+$ source_secret_name: kubectl get secret --context $context -n $namespace --- --column 1 --header-lines 1
+$ target_namespace: kubectl get ns --context $context --- --column 1 --header-lines 1
+
+# Get object names of a kubernetes, k8s context
+kubectl get <object> --no-headers -o custom-columns=':metadata.name' --context <context>
+
+# Set default namespace of current context
+kubectl config set-context --current --namespace=<namespace>
+
+# Get info about current context
+kubectl config get-contexts $(kubectl config current-context)¨

@@ -1,0 +1,22 @@
+% kubernetes, rancher, fleet
+@ kubernetes
+$ clusterid: kubectl -n fleet-default get clusters.provisioning.cattle.io   --- --column 1 --header-lines 1
+
+# Get Fleet bundles 
+kubectl get bundle -n fleet-default --context <local_context>
+
+# Get Fleet bundles, filtered by pattern
+kubectl get bundle -n fleet-default --context <local_context> | grep -E "<pattern>"
+
+# Get Rancher clusters
+kubectl get clusters.management.cattle.io
+
+# Get Rancher nodes
+kubectl get nodes.management.cattle.io -A
+
+# Remove cluster manually from Rancher
+kubectl patch clusters.management.cattle.io <clusterid> -p '{"metadata":{"finalizers":[]}}' --type=merge && 
+kubectl delete clusters.management.cattle.io <clusterid>
+
+# Get password of grafana
+kubectl get secret --namespace cattle-monitoring-system rancher-monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
