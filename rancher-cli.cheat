@@ -1,0 +1,11 @@
+% kubernetes, rancher-cli
+@ kubernetes
+
+# List all projects of all Rancher projects
+rancher projects
+
+# List all projectId of a all Rancher projects
+rancher projects  | awk -v  OFS=" " 'NR>1 { print $1 }'
+
+# Get projectId of Rancher project with a given name
+rancher projects  | awk -v  OFS=" " '{ NR>1 } $2=="<projectName>" { print $1 }'
