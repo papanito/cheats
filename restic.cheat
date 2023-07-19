@@ -1,5 +1,6 @@
 % restic
-$ repository: echo "$RESTIC_REPOSITORY\n"
+$ repository: echo "$RESTIC_REPOSITORY"
+$ snapshot_id: restic -r $RESTIC_REPOSITORY snapshots
 
 # Restoring snapshot to a specific directory
 restic -r <repository> restore <snapshot_id> --target <restore_dir>
