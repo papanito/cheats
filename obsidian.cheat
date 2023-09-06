@@ -1,0 +1,52 @@
+% obsidian, obsidian-cli
+
+# Defines default vault for future usage. If not set, pass --vault flag for other commands. You don't provide the path to vault here, just the name.
+obs set-default "{vault-name}"
+
+# Prints default vault and path. Please set this with set-default command if not set.
+obs print-default
+
+# Opens note in obsidian
+obs open "{note-name}"
+
+# Opens note in specified obsidian
+obs open "{note-name}" --vault "{vault-name}"
+
+# Searches in default obsidian
+obs search "{search-text}"
+
+# Searches in specified obsidian
+obs search "{search-text}" --vault "{vault-name}"
+
+# Creates empty note in default obsidian and opens it
+obs create "{note-name}"
+
+# Creates empty note in given obsidian and opens it
+obs create "{note-name}"  --vault "{vault-name}"
+
+# Creates note in default obsidian with content
+obs create "{note-name}" --content "abcde"
+
+# Creates note in default obsidian with content - overwrite existing note
+obs create "{note-name}" --content "abcde" --overwrite
+
+# Creates note in default obsidian with content - append existing note
+obs create "{note-name}" --content "abcde" --append
+
+# Creates note and opens it
+obs create "{note-name}" --content "abcde" --open
+
+# Renames a note in default obsidian
+obs move "{current-note-path}" "{new-note-path}"
+
+# Renames a note and given obsidian
+obs move "{current-note-path}" "{new-note-path}" --vault "{vault-name}"
+
+# Renames a note in default obsidian and opens it
+obs move "{current-note-path}" "{new-note-path}" --open
+
+# Renames a note in default obsidian
+obs delete "{note-path}" 
+
+# Renames a note in given obsidian
+obs delete "{note-path}" --vault "{vault-name}"
