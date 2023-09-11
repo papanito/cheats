@@ -2,3 +2,9 @@
 
 # identify the used file size (in blocks) as per https://access.redhat.com/solutions/2316
 lsof -Fn -Fs |grep -B1 -i deleted | grep ^s  | cut -c 2- | awk '{s+=$1} END {print s}'
+
+# obtain a list of deleted files which are still held open by applications
+lsof | egrep "deleted|COMMAND"
+
+# force the system to de-allocate the space consumed by an in-use file by forcing the system to truncate the file via the proc file system. 
+echo > /proc/<pid>/fd/<fd_number>
