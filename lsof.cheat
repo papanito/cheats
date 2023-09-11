@@ -1,0 +1,4 @@
+% lsof
+
+# identify the used file size (in blocks) as per https://access.redhat.com/solutions/2316
+lsof -Fn -Fs |grep -B1 -i deleted | grep ^s  | cut -c 2- | awk '{s+=$1} END {print s}'
