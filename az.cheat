@@ -6,3 +6,15 @@ az account show --query id --output tsv
 
 # Get all Azure subscription names and ids
 az account list -otable --query '[].{Name: name,id: id}'
+
+# Fetch the subscription id within the current Azure CLI context.
+az account show --query id --output tsv
+
+# Fetch the subscription id of a given subscription
+az account show -n <subscription_name> --query id --output tsv
+
+# Fetch the subscription id of a given subscription
+az account list --query "[? name=='<subscription_name>'].id | [0]"
+
+# Show details of a subscription
+az account show -n <subscription_name>
