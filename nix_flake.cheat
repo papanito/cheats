@@ -2,23 +2,33 @@
 
 # copy a flake and all its inputs to a store
 nix flake archive
+
 # check whether the flake evaluates and run its tests
 nix flake check
+
 # clone flake repository
 nix flake clone
+
 # show flake metadata
 nix flake info
+
 # create a flake in the current directory from a template
 nix flake init
+
 # create missing lock file entries
 nix flake lock
+
 # show flake metadata
 nix flake metadata
+
 # create a flake in the specified directory from a template
 nix flake new
+
 # download the source tree denoted by a flake reference into the Nix store
 nix flake prefetch
+
 # show the outputs provided by a flake
 nix flake show
+
 # update flake lock file
 nix flake update
