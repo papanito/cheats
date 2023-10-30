@@ -1,6 +1,6 @@
 % azure
 $ subscriptions: az account list -otable --query '[].{Name: name,id: id}' --- --column 2 --header-lines 1
-
+$ format: echo "json\njsonc\nyaml\nyamlc\ntable\ntsv\nnone"
 # Get current subsription ID
 az account show --query id --output tsv
 
@@ -18,3 +18,6 @@ az account subscription list --query "[? displayName=='<subscription_name>'].sub
 
 # Show details of a subscription
 az account show -n <subscription_name>
+
+# Set the default output format
+az config set core.output=<format>
