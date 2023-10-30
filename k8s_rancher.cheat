@@ -20,3 +20,6 @@ kubectl delete clusters.management.cattle.io <clusterid>
 
 # Get password of grafana
 kubectl get secret --namespace cattle-monitoring-system rancher-monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+
+# User bindings for external provider
+kubectl get userattributes.management.cattle.io -ocustom-columns='NAME:.metadata.name,GENERATION:.metadata.generation,LASTREFRESH:.LastRefresh,EXTRABYPROVIDER:.ExtraByProvider'
