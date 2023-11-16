@@ -39,3 +39,6 @@ git diff --name-only --cached
 
 # List staged files only added and modified
 git diff --name-only --cached --diff-filter=AM
+
+# List stages files and the working directory only
+comm -23 <(git diff --cached --name-only) <(git diff --name-only)
