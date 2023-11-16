@@ -27,3 +27,15 @@ git commit --amend --author="<author_name> \<<email>\>"
 
 # Re-sign previous commits with a new gpg key
 git rebase <commit> --exec 'git commit --amend --no-edit -S'
+
+# List modified files
+git status --porcelain | awk 'match($1, "M"){print $2}'
+
+# List deleted files
+git status --porcelain | awk 'match($1, "D"){print $2}'
+
+# List staged files
+git diff --name-only --cached
+
+# List staged files only added and modified
+git diff --name-only --cached --diff-filter=AM
