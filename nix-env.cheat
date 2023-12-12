@@ -27,11 +27,14 @@ nix-env --delete-generations <generations> && nix-store --gc
 # you can delete generations based on how old they are:
 nix-env --delete-generations <days>d && nix-store --gc
 
-# run the garbage collector to delete packages:
-nix-store --gc
+# roll back a user environment
+nix-env --rollback
 
-# See what gc will delete:
-nix-store --gc --print-dead
+# list generations
+nix-env --list-generations --profile /nix/var/nix/profiles/system
 
-# To cleanup the garbage collection on all users:
-nix-collect-garbage -d
+# as root switch to generation
+nix-env --profile /nix/var/nix/profiles/system --switch-generation <generation>
+
+# as root delete broken generations (space separated) 
+nix-env --profile /nix/var/nix/profiles/system --delete-generations <generations>

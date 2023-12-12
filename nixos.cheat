@@ -1,0 +1,24 @@
+% nix, nixos
+
+# To cleanup the garbage collection on all users:
+nix-collect-garbage -d
+
+# roll back a system environment
+nixos-rebuild switch --rollback
+
+# roll back a system environment
+nixos-rebuild switch --rollback
+
+# NixOS also places entries for previous generations in the bootloader menu, so as a last resort you can always revert to a previous configuration by rebooting. To set the currently booted generation as the default run
+/run/current-system/bin/switch-to-configuration boot
+
+# delete generations older than 30 days
+nix-collect-garbage --delete-older-than 30d
+
+% nix, nixos, nix-store
+
+# run the garbage collector to delete packages:
+nix-store --gc
+
+# See what gc will delete:
+nix-store --gc --print-dead
