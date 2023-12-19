@@ -1,6 +1,9 @@
 % kubernetes, rancher-cli
 @ kubernetes
 
+# Switch to a rancher project
+rancher context switch
+
 # List all projects of all Rancher projects
 rancher projects
 
@@ -9,3 +12,9 @@ rancher projects  | awk -v  OFS=" " 'NR>1 { print $1 }'
 
 # Get projectId of Rancher project with a given name
 rancher projects  | awk -v  OFS=" " '{ NR>1 } $2=="<projectName>" { print $1 }'
+
+# List all namespcaes of given context as csv (requires a context switch first)
+rancher namespaces ls --all-namespaces | sed -r 's/[[:blank:]]{2,}/,/g'
+
+# List all projects of a given context as csv (requires a context switch first)
+rancher projects ls | sed -r 's/[[:blank:]]{2,}/,/g' > ~/${env}_projects.csv
