@@ -8,7 +8,13 @@ kubectl get ns
 # Get all namespaces belonging to a specific rancher project(id) in the form of c-xxxxx:p-xxxxx
 kubectl get ns -o=jsonpath="{range .items[?(@.metadata.annotations.field\.cattle\.io/projectId!='<projectId>')]}{.metadata.name}{'\n'}{end}"
 
-
 % kubernetes, k8s, ns, context
 @ kubernetes, k8s, ns
+# List all namespaces of a context
 kubectl get ns --context $context
+
+# Force delete namespaces
+kubectl delete ns <namespace> --force --grace-period=0 --wait=false
+
+# Remove finalizer from namespace
+kubectl get namespaces <namespace> -o json | jq '.spec.finalizers=[]' > <namespace>.json | kubectl apply -f <namespace>.json
