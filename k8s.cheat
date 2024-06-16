@@ -30,4 +30,13 @@ kubectl get <object> --no-headers -o custom-columns=':metadata.name' --context <
 kubectl config set-context --current --namespace=<namespace>
 
 # Get info about current context
-kubectl config get-contexts $(kubectl config current-context)¨
+kubectl config get-contexts $(kubectl config current-context)
+
+# Find running container's user ID in Kubernetes for all pods in a cluster
+for ns in $(kubectl get ns --no-headers); do
+    for pod in $(kubectl get pods -n $ns --no-headers -o custom-columns=NAME:metadata.name); do
+        userid=$(kubectl exec $pod -n $ns -- /bin/sh -c "id -u \$(whoami)")
+        groupid=$(kubectl exec $pod -n $ns -- /bin/sh -c "id -g \$(whoami)")
+        echo pod "$pod" in ns "$ns": "$userid/$groupid"
+    done;
+done;
