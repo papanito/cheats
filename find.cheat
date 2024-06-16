@@ -4,10 +4,64 @@
 find <dir> -maxdepth 1 -type d
 
 # Find directories in location <dir> ignoring hidden directories
-find . -maxdepth 1 -type d -not -path '*/.*' -not -path '.'
+find <directory> -maxdepth 1 -type d -not -path '*/.*' -not -path '.'
 
 # Prints all files that are descendants of your directory, skipping hidden files and directories
-find . -not -path '*/.*'  -not -path '.'
+find <directory> -not -path '*/.*'  -not -path '.'
 
 # Find files with some text in its name, but skip hidden files and directories
-find . -not -path '*/.*' -type f -name '*<search text>*'
+find <directory> -not -path '*/.*' -type f -name '*<search text>*'
+
+# Find files with setuid (SUID)
+find <directory> -perm -4000
+
+# Find files with setuid (SUID)
+find <directory> -perm /u=s
+
+# Find files with setgid (SGID)
+find <directory> -perm -2000
+
+# Find files with setgid (SGID)
+find <directory> -perm /g=s
+
+# Searching for a directory with a specific name
+find <directory> -type d -name <name>
+
+# Find all empty directories under <directory>.
+find <directory>  -type d -empty
+
+# Find all the files owned by a specific user
+find <directory> -user <username>
+
+#Find all files owned by group
+find <directory>  -group <group>
+
+# Find files smaller than x megabytes
+find <directory> -size -<x>M
+
+# Find files bigger than x megabytes
+find <directory> -size +<x>M
+
+# Find recently changed files - x minutes ago
+find <directory> -type f -mmin -<x>
+
+# Find files changed x weeks or later
+find <directory> -type f -mtime +<x>w
+
+# Looking for files that are changed after a specific date (yyyy-mm-dd)
+find <directory> -type f -newermt <date>
+
+# To find files modified in a specific date range (yyyy-mm-dd)
+find <directory> -type f -newermt <from> ! -newermt <to>
+
+# To find files accessed in a specific date range (yyyy-mm-dd)
+find <directory> -type f -newerat <from> ! -newerat <to>
+
+# Specify the depth to search
+find <directory> -maxdepth <depth> -print
+
+# Change all files that have file permissions of ^permissions_old' to more a sane value of ^permissions_new:
+find <directory> -type f -perm <permissions_old> -print -exec chmod <permissions_new> {} \;
+
+# Change all directories that have file permissions of ^permissions_old' to more a sane value of ^permissions_new:
+find <directory> -type d -perm <permissions_old> -print -exec chmod <permissions_new> {} \;
