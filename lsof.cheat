@@ -8,3 +8,39 @@ lsof | egrep "deleted|COMMAND"
 
 # force the system to de-allocate the space consumed by an in-use file by forcing the system to truncate the file via the proc file system. 
 echo > /proc/<pid>/fd/<fd_number>
+
+# Open files in a specific directory
+lsof +D <directory>
+
+# What files are open to a specific mount point
+lsof +f -- <mountpoint>
+
+# Query all open files on NFS
+lsof -N
+
+# Open files by process id (PID)
+lsof -p <pid>
+
+# Open files by process name
+lsof -c <processname>
+
+# Open files by user
+lsof -u <username>
+
+# All open files except of user <username>
+lsof -u ^<username>
+
+# Uncover deletet files
+lsof +L1
+
+# Open network connections (related sockets) by specifing multiple ports (comman sparated)
+lsof -i :<ports>
+
+# Open network connections (related sockets) by specifing protocols
+lsof -i UDP -i TCP
+
+# Show listening TCP services, limit the output. To avoid any lookups (hostname or service name), add -n and -P.
+lsof -n -P -i TCP -sTCP:Listen
+
+# Open connections for a single IP address can be specified as well, optionally with a port.
+lsof -n -P -i @<ip:port>
