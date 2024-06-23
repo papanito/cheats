@@ -1,0 +1,23 @@
+% gitguardian, vulnerabilities
+@ gitguardian, secrets
+
+# search for secrets in files
+ggshield secret scan path -r <path>
+
+# search for secrets in repo
+ggshield secret scan repo -r <path>
+
+# search for secrets in docker images
+ggshield secret scan docker <image>:<tag>
+
+# search for secrets in Pypi packages
+ggshield secret scan pypi <package>
+
+@ gitguardian, vulnerabilities
+
+# search for vulnerabilities in your IaC files
+ggshield iac scan all <path>
+
+# search for new potential IaC vulnerabilities
+ggshield iac scan diff --ref=HEAD~1 . 
+
