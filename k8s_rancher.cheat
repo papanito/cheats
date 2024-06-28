@@ -23,3 +23,6 @@ kubectl get secret --namespace cattle-monitoring-system rancher-monitoring-grafa
 
 # User bindings for external provider
 kubectl get userattributes.management.cattle.io -ocustom-columns='NAME:.metadata.name,GENERATION:.metadata.generation,LASTREFRESH:.LastRefresh,EXTRABYPROVIDER:.ExtraByProvider'
+
+# Create an API key with no expiration
+kubectl patch tokens <token> -–type='json' -p='[{"op": "replace", "path": "/ttl", "value": 0}]' && kubectl patch tokens <token> --type='json' -p='[{"op": "remove", "path": "/expiresAt"}]'
