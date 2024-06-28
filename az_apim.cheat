@@ -1,0 +1,35 @@
+% azure, apim
+@ azure, apim
+
+# list all api management services
+az apim list | jq -r ".[].name"
+ 
+# list all apis in an api management service
+az apim api list -g <rg> -n <API Management service> | jq  -r ".[].name"
+
+# list all apis (in all subscriptions and all resource group)
+for s in $(az account subscription list --only-show-errors | jq -r '.[].subscriptionId' | sed 's/\\[tn]//g'); do
+    for rg in $(az group list --subscription "${s}" --only-show-errors | jq -r '.[].name' | sed 's/\\[tn]//g'); do
+        for apim in $(az apim list --subscription "${s}" --resource-group "${rg}" --only-show-errors | jq -r '.[].name' | sed 's/\\[tn]//g'); do
+            # echo "az apim api list --subscription "${s}" --resource-group "${rg}" --service-name ${apim} | jq  -r '.[].name'"
+            for api in $(az apim api list --subscription "${s}" --resource-group "${rg}" --service-name ${apim} | jq  -r '.[].name' | sed 's/\\[tn]//g'); do
+                echo "${s}|${rg}|${apim}|${api}"
+            done
+        done
+    done
+done
+
+# list all api management operations (in all subscriptions and all resource groups)
+for s in $(az account subscription list --only-show-errors | jq -r '.[].subscriptionId' | sed 's/\\[tn]//g'); do
+    for rg in $(az group list --subscription "${s}" --only-show-errors | jq -r '.[].name' | sed 's/\\[tn]//g'); do
+        for apim in $(az apim list --subscription "${s}" --resource-group "${rg}" --only-show-errors | jq -r '.[].name' | sed 's/\\[tn]//g'); do
+            # echo "az apim api list --subscription "${s}" --resource-group "${rg}" --service-name ${apim} | jq  -r '.[].name'"
+            for api in $(az apim api list --subscription "${s}" --resource-group "${rg}" --service-name ${apim} | jq  -r '.[].name' | sed 's/\\[tn]//g'); do
+                # echo "az apim api operation list --subscription "${s}" --resource-group "${rg}" --service-name ${apim} --api-id ${api} | jq  -r '.[].name'"
+                for operation in $(az apim api operation list --subscription "${s}" --resource-group "${rg}" --service-name ${apim} --api-id ${api} | jq  -r '.[].name' | sed 's/\\[tn]//g'); do
+                    echo "${s}|${rg}|${apim}|${api}|${operation}"
+                done
+            done
+        done
+    done
+done
