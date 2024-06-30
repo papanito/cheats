@@ -1,0 +1,21 @@
+% ss, socket statistics
+
+# Summary of socket connections (all connections, show port and service number, incl. process names)
+
+ss -plants
+
+# close active connections. It works for IPv4 and IPv6 and can be used with the --kill option. Typically you want to combine this with a specific IP address and optionally a port.
+ss --kill dst <ip address> dport = <port>
+
+# monitor connections ( see the amount of traffic and great for monitoring or when to do system maintenance)
+ss -n --events
+
+# open connections on a port
+ss -nt sport = :<port>
+
+# Query multiple ports
+ss -nt '( sport = :<port 1> or sport = :<port 2> )'
+
+# Connection by defining the side ‘src’ (source) or ‘dst’ (destination)
+
+ss -nt '( src :<port 1> or src :<port 2> )'
