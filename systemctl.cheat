@@ -1,0 +1,49 @@
+% systemctl, systemd
+
+# Stop running service
+systemctl stop
+
+# Start service
+systemctl start
+
+# Restart running service
+systemctl restart
+
+# Reload config files for service
+systemctl reload
+
+# Reload changed unit files
+systemctl daemon-reload
+
+# Show status of service
+systemctl status
+
+# Show failed services
+systemctl state=failed (or --failed)
+
+# Resets unit(s) with failed state
+systemctl reset-failed
+
+# Enable service or unit and allow start on boot
+systemctl enable
+
+# Disable service or unit, don’t start at boot
+systemctl disable
+
+# Fully disable a unit
+systemctl mask
+
+# Reactivate unit again after being masked
+systemctl unmask
+
+# Show unit file details
+systemctl cat
+
+# Show properties
+systemctl show
+
+# Create configuration as drop in unit (extension to primary config)
+systemctl edit
+
+# Edit primary unit file for service
+systemctl edit --full
