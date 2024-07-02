@@ -1,5 +1,5 @@
-% azure, service-principals
-@ azure, service-principals
+% azure, service-principals, cloud
+@ azure, service-principals, cloud
 $ sp-id: az ad sp list -otable --query '[].{Name: displayName,subscription_id: id}'
 # List all service principals with displayName and ID
 az ad sp list -otable --query '[].{Name: displayName,id: id}'

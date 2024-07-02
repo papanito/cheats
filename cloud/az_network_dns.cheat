@@ -1,4 +1,4 @@
-% azure, network
+% azure, network, cloud
 
 # List all private-dns zones for a given resource group
 az network private-dns zone list -g <resource_group>

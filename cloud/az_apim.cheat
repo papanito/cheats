@@ -1,5 +1,5 @@
-% azure, apim
-@ azure, apim
+% azure, apim, cloud
+@ azure, apim, cloud
 
 # list all api management services
 az apim list | jq -r ".[].name"

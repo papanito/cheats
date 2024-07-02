@@ -1,4 +1,4 @@
-% gcloud
+% gcloud, cloud
 $ project: gcloud projects list --- --column 1 --header-lines 1
 $ secret: gcloud secrets list --- --column 1 --header-lines 1
 

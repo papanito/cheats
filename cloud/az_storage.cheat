@@ -1,4 +1,4 @@
-% azure, storage
+% azure, storage, cloud
 $ storage-accounts: az storage account list -otable --query "[].{Name: name,Location: primaryLocation,ResourceGroup: resourceGroup}"  --- --column 1 --header-lines 1
 
 # Get storage accounts

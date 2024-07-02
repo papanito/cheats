@@ -1,4 +1,5 @@
-% azure, aks
+% azure, aks, cloud
+
 $ clusters: az aks list -otable --query "[].{Name: name,Location: primaryLocation,ResourceGroup: resourceGroup}"  --- --column 1 --header-lines 1
 $ rg: az aks list -otable --query "[].{Name: name,Location: primaryLocation,ResourceGroup: resourceGroup}"  --- --column 2 --header-lines 1
 
