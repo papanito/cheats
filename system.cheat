@@ -1,0 +1,4 @@
+% process, linux
+
+# See the cgroup of a process
+cat /proc/$(pidof -s <process name>)&/cgroup
