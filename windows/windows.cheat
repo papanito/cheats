@@ -1,7 +1,19 @@
-% windows,powershell
+% windows, powershell
 
 # to list all the features available with a given string
 Get-WindowsFeature | Where-Object Name -like '*<search_string>*' | Select-Object 
 
 # remove feature from windows
 Remove-WindowsFeature <feature_name>
+
+% proxy
+@ windows, powershell
+
+# Use a proxy that isn't already configured in Internet Options
+[net.webrequest]::defaultwebproxy = new-object net.webproxy "http://proxy.example.org:8080"
+
+# Use the Windows credentials of the logged-in user to authenticate with your proxy
+[net.webrequest]::defaultwebproxy.credentials = [net.credentialcache]::defaultcredentials
+
+# Use other credentials (replace 'username' and 'password')
+[net.webrequest]::defaultwebproxy.credentials = new-object net.networkcredential 'username', 'password'
