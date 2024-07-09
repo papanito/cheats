@@ -1,4 +1,4 @@
-# Cheatsheets for [navi](https://github.com/denisidoro/navi).
+# Cheatsheets for [navi](https://github.com/denisidoro/navi)
 
 This is my personal extension to the defaults provided by [navi].
 
