@@ -27,8 +27,11 @@ kubectl get <object> --selector <label>
 # Get pods with a specific value of a given label
 kubectl get <object> --selector <label>=<label_value>
 
-## Get object with a specific annotation e.g `@.spec.template.metadata.annotations.prometheus\.io/scrape=="true"`
+# Get object with a specific annotation e.g `@.spec.template.metadata.annotations.prometheus\.io/scrape=="true"`
 kubectl get <object> -o=jsonpath='{.items[?(<annotation>)].metadata.name}'
+
+# List all running nodes or pods along with their resource utilization
+kubectl top pod --sort-by=cpu -A
 
 % kubernetes, k8s, context
 @ kubernetes, k8s
