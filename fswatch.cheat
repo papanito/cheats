@@ -1,0 +1,19 @@
+% file change monitor
+
+# list available monitors by employing the -M or - list-monitors option:
+fswatch -M
+
+# list available monitors by employing the -M or - list-monitors option:
+fswatch --list-monitors
+
+# Set the latency in seconds, the default being 1 second.
+fswatch -l <latency> <file>
+
+# Using -t or --timestamp option prints the time stamp for every event
+fswatch --timestamp <file>
+
+# -x or --event-flags tells fswatch to print the event flags alongside the event path
+fswatch --events-flags <file>
+
+# To print the numeric value of an event indicating changes in your home directory and /var/log/auth.log file, use -n or --numeric option as below:
+fswatch --numeric <file>
