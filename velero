@@ -1,0 +1,18 @@
+% backup, velero
+
+# Get details of velero backup schedule
+velero schedule get <schedule> -oyaml 
+
+# Creating a backup reference to the defined resource policies. Users create a backup with the flag --resource-policies-configmap, which will reference the current backup to the defined resource policies. The creating command would be like the below:
+velero backup create --resource-policies-configmap <configmap-name>
+
+# When the backup completes, view information about the backups:
+velero backup describe <backup_name> && kubectl -n velero get podvolumebackups -l velero.io/backup-name=<backup_name> -o yaml
+
+§ restore
+@ backup, velero
+# Restore from your Velero backup:
+velero restore create --from-backup <backup_name> <option>
+
+# When the restore completes, view information about your pod volume restores:
+velero restore describe <restore_name> && kubectl -n velero get podvolumerestores -l velero.io/restore-name=<restore_name> -o yaml
