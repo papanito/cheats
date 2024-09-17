@@ -24,3 +24,6 @@ az config set core.output=<format>
 
 # Set subscription
 az account set --subscription <subscription_name>
+
+# Get Tennant ID
+az account show -s <subscription_name> --query tenantId -otsv
