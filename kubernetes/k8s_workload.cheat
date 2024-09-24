@@ -44,3 +44,6 @@ kubectl exec -it --context <context> -n <namespace> <pod> -- /bin/bash
 
 # Check disk space on pod in a specific context
 kubectl exec -it --context <context> -n <namespace> <pod> -- sh -c "df -h"
+
+# Get mapped service account in pod
+kubectl get pods --context dev -A -o=jsonpath='{range .items[*]}{"SA:"}{.spec.serviceAccount}{"\t"}{"NS:"}{.metadata.namespace}{"\t"}{"Pod:"}{.metadata.name}{"\n"}{end}'
