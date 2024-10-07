@@ -1,0 +1,22 @@
+% blkid, disk
+
+# Show available hard disk devices
+blkid
+
+# Available hard using a filter with the major device ID (comma separated list of numbers)
+lsblk --nodeps --noheadings --include <ids> --output NAME
+
+% lshw, disk
+
+# Show hard disk specifications and details
+lshw -class disk
+
+% hdparm, disk
+
+# Show information about SATA hard disks (using hdparm)
+hdparm -I /dev/<device>
+
+% nvme, disk
+
+# Show information about NVMe devices (using nvme)
+nvme list /dev/<device>
