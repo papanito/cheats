@@ -1,0 +1,37 @@
+% ffmpeg, video
+
+# Get Video Info
+ffmpeg -i <video_file> -hide_banner
+
+# Extract Images from a Video into separate image files named image1.jpg, image2.jpg, and so on.
+ffmpeg -i <video_file> <cideo_file>_%d.jpg
+
+# Convert Images into Video - which will take all the images in the current folder (like "image1.jpg", "image2.jpg", etc.) 
+ffmpeg -f image2 -i image%d.jpg imagestovideo.mpg
+
+# Convert a Video to MP3 Format 
+ffmpeg -i <video_file> -vn -ar 44100 -ac 2 -ab 192 -f mp3 <video_file>.mp3
+
+# Convert Video to an animated, uncompressed gif file
+ffmpeg -i <video_file> <video_file>.gif
+
+# To convert a .avi file to an mpeg for dvd players
+ffmpeg -i <video_file>.avi -target pal-dvd -ps 2000000000 -aspect 16:9 <video_file>.mpeg
+
+# Extract audio or sound from a video file, and save it as MP3 file, use the following command:
+ffmpeg -i >video_file> -vn -ar 44100 -ac 2 -ab 192 -f mp3 <video_file>.mp3
+
+# Combine an audio file and a video file into a single multimedia file
+ffmpeg -i <audio_file> -i <video_file> <video_file>_w_audio.mpg
+
+# Increase video playback speed, run the following command with the -vf option, which sets the video filters that help to adjust the playback speed.
+ffmpeg -i <video_file> -vf "setpts=0.5*PTS" fast_<video_file>
+
+# Decrease video playback speed, run the following command with the -vf option, which sets the video filters that help to adjust the playback speed.
+ffmpeg -i <video_file> -vf "setpts=4.0*PTS" slow_<video_file> hide_banner
+
+# Add subtitle to a video file
+ffmpeg -i <video_file> -i <subtitle_file> -map 0 -map 1 -c copy -c:v libx264 -crf 23 -preset veryfast out_<video_file>
+
+# Add a cover poster or image to an audio file
+ffmpeg -loop 1 -i <image_file> -i <audio_file> -c:v libx264 -c:a aac
