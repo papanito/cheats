@@ -3,5 +3,8 @@
 # See the cgroup of a process
 cat /proc/$(pidof -s <process name>)&/cgroup
 
-@ See cgroup in ps output
+# See cgroup in ps output
 ps -e -o pid,cgroup:64,args
+
+# Show the systemd machine ID 
+hostnamectl

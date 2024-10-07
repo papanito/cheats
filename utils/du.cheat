@@ -1,4 +1,7 @@
 % du, disk
 
 # Find the biggest directories on disk 
-du --all --human-readable --one-file-system <directory> | sort --human-numeric-sort --reverse | head
+du --all --human-readable --one-file-system <directory> | sort --human-numeric-sort --reverse | heada
+
+# Find when the last modification happened in a directory 
+du -sh --time <directory>

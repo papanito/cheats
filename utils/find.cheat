@@ -33,8 +33,8 @@ find <directory>  -type d -empty
 # Find all the files owned by a specific user
 find <directory> -user <username>
 
-#Find all files owned by group
-find <directory>  -group <group>
+# Find all files owned by group
+find <directory> -group <group>
 
 # Find files smaller than x megabytes
 find <directory> -size -<x>M
@@ -65,3 +65,15 @@ find <directory> -type f -perm <permissions_old> -print -exec chmod <permissions
 
 # Change all directories that have file permissions of ^permissions_old' to more a sane value of ^permissions_new:
 find <directory> -type d -perm <permissions_old> -print -exec chmod <permissions_new> {} \;
+
+# Find all writable files
+find <directory> -perm /222
+
+# Find writable files by others
+find <directory> -perm /002
+
+# Find writable files by others
+find <directory> -perm /g=w,o=w
+
+# Find symbolic links
+find <directory> -type l -xtype d

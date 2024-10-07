@@ -1,4 +1,5 @@
 % systemctl, systemd
+$time: echo -e "target"
 
 # Stop running service
 systemctl stop <service>
@@ -18,8 +19,11 @@ systemctl daemon-reload
 # Show status of service
 systemctl status <service>
 
-# Show failed services
-systemctl state=failed (or --failed)
+# Show failed services (or --failed)
+systemctl state=failed
+
+# See all enabled services with systemctl 
+systemctl list-unit-files --type=service --state=enabled
 
 # Resets unit(s) with failed state
 systemctl reset-failed
@@ -56,3 +60,6 @@ systemctl --type=service --state=running --legend=false
 
 # See all masked units - systemd uses the concept of masked units that prevents those units from being started
 systemctl list-unit-files --state=masked
+
+# See all active systemd units of one type 
+systemctl list-units --type=<type>

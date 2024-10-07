@@ -18,7 +18,7 @@ grep "^[[:digit:]]" <filename>
 # search line which will start from lower letters i.e [a-z] (Lower Letters).
 grep "^[[:lower:]]" <filename>
 
-# search line which will start from [! ” # $ % & ‘ ( ) * + , – . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~. ] i.e. Punctuation Characters.
+# search line which will start from [! " # $ % & ‘ ( ) * + , – . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~. ] i.e. Punctuation Characters.
 grep "^[[:punct:]]" <filename>
 
 # search a line which will start from Alphanumeric & Punctuation Characters called as Graphical Characters.
@@ -35,3 +35,6 @@ grep "^[[:upper:]]" <filename>
 
 # searches a line which will start from [0-9, A-F and a-f] i.e Hexadecimal Digits.
 grep "^[[:xdigit:]]" <filename>
+
+# Search a string in Gzipped Files
+zgrep -i <text> <filename>
