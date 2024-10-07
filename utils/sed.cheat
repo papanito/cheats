@@ -1,0 +1,7 @@
+% sed 
+
+# Remove trailing whitespace from a file 
+sed -i 's/[[:space:]]*$//' <file>
+
+# Insert a line at the beginning of a file 
+sed -i '1i <text>' <file>
