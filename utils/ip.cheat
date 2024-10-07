@@ -1,0 +1,32 @@
+% ip, network
+$ type: echo -e "vlan\nbridge"
+
+# Show ARP cache
+ip neighbour
+
+# Delete an ARP entry
+ip neigh del <ip> dev <device> 
+
+# Show assigned IP address of the system.
+ip address
+
+# Show assigned IP address of the system.
+ip address dev <device>
+
+# Limit the output by specifying its type, such as a bridge or VLAN.
+ip address show type <type>
+
+# List Multicast IP addresses
+ip maddr
+
+# Show network routing information
+ip route
+
+# Test routing for a specific IP address
+ip route get <ip>
+
+# Define a default route on the ens18 interface.
+ip route add default via <ip> dev <device>
+
+# Delete a route for the defined network
+ip route delete <gatewaypip> via <ip>
