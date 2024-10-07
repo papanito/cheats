@@ -1,8 +1,10 @@
-% ss, socket statistics
+% ss, socket statistics, network
 
 # Summary of socket connections (all connections, show port and service number, incl. process names)
-
 ss -plants
+
+# Show TCP/UDP and related process
+ss -plunt
 
 # close active connections. It works for IPv4 and IPv6 and can be used with the --kill option. Typically you want to combine this with a specific IP address and optionally a port.
 ss --kill dst <ip address> dport = <port>
