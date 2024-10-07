@@ -1,22 +1,22 @@
 % systemctl, systemd
 
 # Stop running service
-systemctl stop
+systemctl stop <service>
 
 # Start service
-systemctl start
+systemctl start <service>
 
 # Restart running service
-systemctl restart
+systemctl restart <service>
 
 # Reload config files for service
-systemctl reload
+systemctl reload <service>
 
 # Reload changed unit files
 systemctl daemon-reload
 
 # Show status of service
-systemctl status
+systemctl status <service>
 
 # Show failed services
 systemctl state=failed (or --failed)
@@ -25,7 +25,7 @@ systemctl state=failed (or --failed)
 systemctl reset-failed
 
 # Enable service or unit and allow start on boot
-systemctl enable
+systemctl enable <service>
 
 # Disable service or unit, don’t start at boot
 systemctl disable
@@ -37,13 +37,22 @@ systemctl mask
 systemctl unmask
 
 # Show unit file details
-systemctl cat
+systemctl cat <service>
 
 # Show properties
-systemctl show
+systemctl show <service>
+
+# See memory usage of a service with systemctl
+systemctl show --property=MemoryCurrent <service> | awk -F= '{print $2}'
 
 # Create configuration as drop in unit (extension to primary config)
-systemctl edit
+systemctl edit <service>
 
 # Edit primary unit file for service
-systemctl edit --full
+systemctl edit --full <service>
+
+# See only running services instead all active units
+systemctl --type=service --state=running --legend=false
+
+# See all masked units - systemd uses the concept of masked units that prevents those units from being started
+systemctl list-unit-files --state=masked
