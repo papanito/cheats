@@ -1,0 +1,4 @@
+% zypper, suse
+
+# Audit SuSE with zypper: vulnerable packages 
+zypper lp | awk '{ if ($7=="security") { if ($11=="update") { print $13 } else { print $11 } } }' | sed 's/:$//' | grep -v "^$" | sort | uniq
