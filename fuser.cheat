@@ -1,0 +1,13 @@
+% linux, process, files, sockets
+
+# Show which processes have TCP port xx socket open including details
+
+fuser --verbose --ipv4 <port>/<protocol>
+
+# Select namespace 'tcp' and select port xx to see which processes have the socket open with verbose for details
+
+fuser --verbose --namespace tcp <port>
+
+# Show all processes that have a file open at the specified mount point
+
+fuser --verbose --mount <mountpoint>
