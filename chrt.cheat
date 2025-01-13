@@ -1,0 +1,13 @@
+% linux, scheduler
+
+# Show the assigned policy and priority for process ID 1234
+
+chrt --pid <pid>
+
+# Runs a command with a fairly low priority as a batch task (SCHED_BATCH)
+
+chrt --batch <priority> <command>
+
+# Assign SCHED_OTHER policy with priority 0 for process ID 1234
+
+chrt --other --pid <priority> <pid>

@@ -1,0 +1,5 @@
+% linux, file descriptors
+
+# Show open file descriptors for PIDs
+
+lsfd --pid <pids>

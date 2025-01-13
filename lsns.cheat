@@ -1,0 +1,5 @@
+% linux, namespaces
+
+# Show all available namespaces
+
+lsns
