@@ -4,3 +4,9 @@
 echo | openssl s_client -connect <domain>:<port> 2>/dev/null |openssl x509 -dates -noout
 
 $ port: echo -e "443\n "
+
+# Making and trusting your own certificates
+openssl req -x509 -out <localdomain>>.crt -keyout <localdomain>.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj "/CN=<localdomain>" -extensions EXT -config <( \
+   printf "[dn]\nCN=<localdomain>\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:<localdomain>\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
