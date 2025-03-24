@@ -8,3 +8,6 @@ ps -e -o pid,cgroup:64,args
 
 # Show the systemd machine ID 
 hostnamectl
+
+# KVM mount 9p virtio
+mount -t 9p -o trans=virtio,version=9p2000.L <hostshare> <mount_dir>
