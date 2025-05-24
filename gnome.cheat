@@ -5,3 +5,6 @@ gsettings set org.gnome.desktop.default-applications.terminal exec <console>
 
 # dump dconf to file
 dconf dump <path> > dump.dconf
+
+# diasble extension validation
+gsettings set org.gnome.shell disable-extension-version-validation true
