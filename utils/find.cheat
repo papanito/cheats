@@ -77,3 +77,6 @@ find <directory> -perm /g=w,o=w
 
 # Find symbolic links
 find <directory> -type l -xtype d
+
+# Find all duplicate files by MD5 hash 
+find <directory> -type f -print0 | xargs -0 md5sum | sort | uniq -w32 --all-repeated=separate
