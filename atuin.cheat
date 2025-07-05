@@ -1,0 +1,4 @@
+% atuin
+
+# Review and select the history entries starting with '<text>' that you wish to delete
+tuin search --delete <text>
