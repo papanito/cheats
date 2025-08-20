@@ -1,0 +1,13 @@
+% journalctl, systemd
+
+# Check logs for DisplayLink-related messages
+journalctl -b 0 | grep -i "displaylink\|evdi"
+
+# Check recent kernel messages for display/graphics issues
+journalctl -k -b 0
+
+# Check Gnome Shell logs (if you suspect a desktop environment issue)
+journalctl -b 0 /usr/bin/gnome-shell
+
+# Look for general Xorg or display server errors
+journalctl -b 0 | grep -i "xorg\|display"
