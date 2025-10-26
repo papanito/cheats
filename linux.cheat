@@ -1,0 +1,4 @@
+% linux
+
+# Remove all spaces in a file and replace it with .
+for f in *' '*; do mv "$f" "${f// /.}" 2>/dev/null; done
