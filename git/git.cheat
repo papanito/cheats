@@ -45,3 +45,9 @@ comm -23 <(git diff --cached --name-only) <(git diff --name-only)
 
 # Update credentials on linux or with generic credential helper
 git credential-cache exit
+
+# Change the author and committer name/email for last commit
+git commit --amend --no-edit --reset-author
+
+# Change the author and committer name/email for multiple commits (use --root as commit)
+git rebase -r <commit> --exec 'git commit --amend --no-edit --reset-author'
