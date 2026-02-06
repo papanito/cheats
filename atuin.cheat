@@ -1,4 +1,10 @@
 % atuin
 
 # Review and select the history entries starting with '<text>' that you wish to delete
-tuin search --delete <text>
+atuin search --delete <text>
+
+# Delete all entries where the execution failed
+atuin search --exclude-exit=0 "" --delete
+
+# Search entries for commands with a specific exit code
+atuin search --exit=<exitcode>
