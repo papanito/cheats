@@ -10,3 +10,7 @@ bw generate -<pwd_options> --length <length>
 
 # Create secure note in Bitwarden
 bw get template item | jq '.type = 2 | .secureNote.type = 0 | .notes = "<contents>" | .name = "<name>"' | bw encode | bw create item
+
+% bitwarden, bws
+# Get secret from key
+bws secret list | jq '. | .[] | select(.key == "<key_name>") | .value'  
